@@ -32,6 +32,11 @@ public class UsuarioController {
         return usuarioService.listar();
     }
 
+    @GetMapping("/{id}")
+    public Usuario listaUm(@PathVariable(value = "id") long id) {
+        return usuarioService.listaUm(id);
+    }
+
     @DeleteMapping("/{id}")
     public void deletaUm(@PathVariable(value = "id") long id) {
         usuarioService.deletaUsuario(id);

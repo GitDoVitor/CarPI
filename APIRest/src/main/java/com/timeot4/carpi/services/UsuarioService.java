@@ -20,6 +20,16 @@ public class UsuarioService {
     public Usuario salvar(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
-    public List<Usuario> listar() { return usuarioRepository.findAll(); }
-    public void deletaUsuario(@PathVariable(value = "id") long id) { usuarioRepository.deleteById(id); }
+
+    public List<Usuario> listar() {
+        return usuarioRepository.findAll();
+    }
+
+    public Usuario listaUm(@PathVariable(value = "id") long id) {
+        return usuarioRepository.findById(id);
+    }
+
+    public void deletaUsuario(@PathVariable(value = "id") long id) {
+        usuarioRepository.deleteById(id);
+    }
 }
