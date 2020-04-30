@@ -11,8 +11,8 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-//    private Endereco endereco;
-//    private Telefone telefone;
+    private Endereco endereco;
+    private Telefone telefone;
     private String cpf;
     private Boolean adm;
 
@@ -48,21 +48,22 @@ public class Usuario {
         this.senha = senha;
     }
 
-//    public Endereco getEndereco() {
-//        return endereco;
-//    }
-//
-//    public void setEndereco(Endereco endereco) {
-//        this.endereco = endereco;
-//    }
-//
-//    public Telefone getTelefone() {
-//        return telefone;
-//    }
-//
-//    public void setTelefone(Telefone telefone) {
-//        this.telefone = telefone;
-//    }
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+
+    }
+
+    public Telefone getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(Telefone telefone) {
+        this.telefone = telefone;
+    }
 
     public String getCpf() {
         return cpf;
@@ -87,8 +88,8 @@ public class Usuario {
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
-//                ", endereco=" + endereco +
-//                ", telefone='" + telefone + '\'' +
+                ", endereco=" + endereco +
+                ", telefone='" + telefone + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", adm=" + adm +
                 '}';

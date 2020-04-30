@@ -5,6 +5,8 @@ import com.timeot4.carpi.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
@@ -17,4 +19,5 @@ public class UsuarioService {
     public Usuario salvar(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
+    public List<Usuario> listar() { return usuarioRepository.findAll(); }
 }
