@@ -2,7 +2,6 @@ package com.timeot4.carpi.controller;
 
 
 import com.timeot4.carpi.models.Usuario;
-import com.timeot4.carpi.repository.UsuarioRepository;
 import com.timeot4.carpi.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +30,11 @@ public class UsuarioController {
     @GetMapping
     public List<Usuario> listarTodos() {
         return usuarioService.listar();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletaUm(@PathVariable(value = "id") long id) {
+        usuarioService.deletaUsuario(id);
     }
 
 }
