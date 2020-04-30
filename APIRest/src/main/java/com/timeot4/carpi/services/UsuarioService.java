@@ -1,0 +1,20 @@
+package com.timeot4.carpi.services;
+
+import com.timeot4.carpi.models.Usuario;
+import com.timeot4.carpi.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UsuarioService {
+    private final UsuarioRepository usuarioRepository;
+
+    @Autowired
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
+
+    public Usuario salvar(Usuario usuario) {
+        return usuarioRepository.save(usuario);
+    }
+}

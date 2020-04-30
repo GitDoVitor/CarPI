@@ -11,9 +11,9 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private Endereco endereco;
-    private Telefone telefone;
-    private String CPF;
+//    private Endereco endereco;
+//    private Telefone telefone;
+    private String cpf;
     private Boolean adm;
 
     public Long getId() {
@@ -48,28 +48,28 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+//    public Endereco getEndereco() {
+//        return endereco;
+//    }
+//
+//    public void setEndereco(Endereco endereco) {
+//        this.endereco = endereco;
+//    }
+//
+//    public Telefone getTelefone() {
+//        return telefone;
+//    }
+//
+//    public void setTelefone(Telefone telefone) {
+//        this.telefone = telefone;
+//    }
+
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
-    public Telefone getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(Telefone telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getCPF() {
-        return CPF;
-    }
-
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Boolean getAdm() {
@@ -87,9 +87,9 @@ public class Usuario {
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
-                ", endereco=" + endereco +
-                ", telefone='" + telefone + '\'' +
-                ", CPF='" + CPF + '\'' +
+//                ", endereco=" + endereco +
+//                ", telefone='" + telefone + '\'' +
+                ", cpf='" + cpf + '\'' +
                 ", adm=" + adm +
                 '}';
     }
