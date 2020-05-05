@@ -1,6 +1,7 @@
 package com.timeot4.carpi.controller;
 
 
+import com.timeot4.carpi.dto.UsuarioDTO;
 import com.timeot4.carpi.models.Usuario;
 import com.timeot4.carpi.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> salvar(@RequestBody Usuario usuario) {
-         usuario = usuarioService.salvar(usuario);
+    public ResponseEntity<Usuario> salvar(@RequestBody UsuarioDTO dto) {
+         Usuario usuario = usuarioService.salvar(dto.transformaParaObjeto());
         return new ResponseEntity<>(usuario, HttpStatus.CREATED);
     }
 

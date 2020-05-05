@@ -1,7 +1,10 @@
 package com.timeot4.carpi.models;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@NoArgsConstructor
 @Entity
 @Table(name = "Usuarios")
 public class Usuario {
@@ -79,6 +82,15 @@ public class Usuario {
 
     public void setAdm(Boolean adm) {
         this.adm = adm;
+    }
+
+    public Usuario(String nome, String email, String senha, Endereco endereco, Telefone telefone, String cpf) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.cpf = cpf;
     }
 
     @Override
