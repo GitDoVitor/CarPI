@@ -42,4 +42,8 @@ public class UsuarioController {
         usuarioService.deletaUsuario(id);
     }
 
+    @PutMapping("/{id}")
+    public Usuario editaUsuario(@RequestBody Usuario usuario){
+        return usuarioService.salvar(usuario);
+    }
 }
