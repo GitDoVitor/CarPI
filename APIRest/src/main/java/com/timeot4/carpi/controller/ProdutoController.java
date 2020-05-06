@@ -2,6 +2,9 @@ package com.timeot4.carpi.controller;
 
 import com.timeot4.carpi.models.Produto;
 import com.timeot4.carpi.services.ProdutoService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +25,24 @@ public class ProdutoController {
         return new ResponseEntity<>(produto, HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @ApiOperation(value = "Retorna uma lista de produtos")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Retorna a lista de produtos"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+    })
+    @GetMapping(produces="application/json")
     public List<Produto> listarTodos() {
         return produtoService.listar();
     }
 
-    @GetMapping("/{id}")
+    @ApiOperation(value = "Retorna um produto")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Retorna um produto"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+    })
+    @GetMapping(value = "/{id}", produces="application/json")
     public Produto listaUm(@PathVariable(value = "id") long id) {
         return produtoService.listaUm(id);
     }

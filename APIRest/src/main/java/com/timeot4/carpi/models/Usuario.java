@@ -1,11 +1,13 @@
 package com.timeot4.carpi.models;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @NoArgsConstructor
 @Entity
+@Getter
 @Table(name = "Usuarios")
 public class Usuario {
     @Id
@@ -18,71 +20,6 @@ public class Usuario {
     private Telefone telefone;
     private String cpf;
     private Boolean adm;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-
-    }
-
-    public Telefone getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(Telefone telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Boolean getAdm() {
-        return adm;
-    }
-
-    public void setAdm(Boolean adm) {
-        this.adm = adm;
-    }
 
     public Usuario(String nome, String email, String senha, Endereco endereco, Telefone telefone, String cpf) {
         this.nome = nome;

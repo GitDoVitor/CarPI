@@ -1,27 +1,14 @@
 package com.timeot4.carpi.models;
 
+import lombok.Getter;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
+@Getter
 public class Telefone {
     private Long telefonePrimario;
     private Long telefoneSecundario;
-
-    public Long getTelefonePrimario() {
-        return telefonePrimario;
-    }
-
-    public void setTelefonePrimario(Long telefonePrimario) {
-        this.telefonePrimario = telefonePrimario;
-    }
-
-    public Long getTelefoneSecundario() {
-        return telefoneSecundario;
-    }
-
-    public void setTelefoneSecundario(Long telefoneSecundario) {
-        this.telefoneSecundario = telefoneSecundario;
-    }
 
     @Override
     public String toString() {
