@@ -2,6 +2,7 @@ package com.timeot4.carpi.controller;
 
 
 import com.timeot4.carpi.dto.UsuarioDTO;
+import com.timeot4.carpi.dto.UsuarioRespostaDTO;
 import com.timeot4.carpi.models.Usuario;
 import com.timeot4.carpi.services.UsuarioService;
 import io.swagger.annotations.ApiOperation;
@@ -25,10 +26,10 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping(produces="application/json", consumes="application/json")
-    public ResponseEntity<Usuario> salvar(@RequestBody UsuarioDTO dto) {
-         Usuario usuario = usuarioService.salvar(dto.transformaObjeto());
-        return new ResponseEntity<>(usuario, HttpStatus.CREATED);
+    @PostMapping
+    public ResponseEntity<UsuarioRespostaDTO> salvar(@RequestBody UsuarioDTO dto) {
+        Usuario usuario = usuarioService.salvar(dto.transformaObjeto());
+        return new ResponseEntity<>(UsuarioRespostaDTO.transformaEmDTO(usuario), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Retorna uma lista de pessoas")
