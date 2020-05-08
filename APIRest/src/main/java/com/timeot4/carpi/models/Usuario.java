@@ -19,7 +19,7 @@ public class Usuario {
     private Endereco endereco;
     private Telefone telefone;
     private String cpf;
-    private boolean adm;
+    private Boolean adm;
 
     public Long getId() {
         return id;
@@ -45,7 +45,7 @@ public class Usuario {
         return cpf;
     }
 
-    public boolean isAdm() {
+    public Boolean getAdm() {
         return adm;
     }
 

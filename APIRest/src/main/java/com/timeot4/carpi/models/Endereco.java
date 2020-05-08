@@ -9,7 +9,7 @@ import javax.persistence.Embeddable;
 public class Endereco {
     private String rua;
     private String bairro;
-    private String CEP;
+    private String cep;
     private Long numeroDaCasa;
 
 }

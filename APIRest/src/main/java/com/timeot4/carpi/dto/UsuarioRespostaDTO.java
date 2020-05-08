@@ -19,6 +19,6 @@ public class UsuarioRespostaDTO {
     private Boolean adm;
 
     public static UsuarioRespostaDTO transformaEmDTO(Usuario usuario) {
-        return new UsuarioRespostaDTO(usuario.getId(), usuario.getNome(), usuario.getEmail(), usuario.getEndereco(), usuario.getTelefone(), usuario.getCpf(), usuario.isAdm());
+        return new UsuarioRespostaDTO(usuario.getId(), usuario.getNome(), usuario.getEmail(), usuario.getEndereco(), usuario.getTelefone(), usuario.getCpf(), usuario.getAdm());
     }
 }
