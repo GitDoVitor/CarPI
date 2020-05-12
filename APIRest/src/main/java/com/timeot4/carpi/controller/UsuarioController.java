@@ -1,6 +1,7 @@
 package com.timeot4.carpi.controller;
 
 
+import com.timeot4.carpi.dto.PerfilDTO;
 import com.timeot4.carpi.dto.UsuarioDTO;
 import com.timeot4.carpi.dto.UsuarioRespostaDTO;
 import com.timeot4.carpi.models.Usuario;
@@ -50,10 +51,11 @@ public class UsuarioController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @GetMapping(value = "/{id}", produces="application/json")
-    public Usuario listaUm(@PathVariable(value = "id") long id) {
-        return usuarioService.listaUm(id);
+    public PerfilDTO mostraPerfil(@PathVariable(value = "id") long id) {
+        Usuario usuario = usuarioService.listaUm(id);
+        return PerfilDTO.transformaPerfil(usuario);
     }
-
+    
     @DeleteMapping(value = "/{id}", consumes="application/json")
     public void deletaUm(@PathVariable(value = "id") long id) {
         usuarioService.deletaUsuario(id);
