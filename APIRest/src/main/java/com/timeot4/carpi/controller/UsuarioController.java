@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @RequestMapping("/usuarios")
 @RestController
@@ -31,10 +32,11 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<UsuarioRespostaDTO> salvar(@RequestBody UsuarioDTO dto) {
-        Usuario usuarioTeste = usuarioService.salvar(dto.transformaObjeto());
+        Usuario usuarioTeste = dto.transformaObjeto();
         String senha = usuarioTeste.getSenha();
         String bcryptHashString = BCrypt.withDefaults().hashToString(12, senha.toCharArray());
         usuarioTeste.setSenha(bcryptHashString);
+        usuarioTeste = usuarioService.salvar(usuarioTeste);
         return new ResponseEntity<>(UsuarioRespostaDTO.transformaEmDTO(usuarioTeste), HttpStatus.CREATED);
     }
 
@@ -62,6 +64,19 @@ public class UsuarioController {
     public PerfilDTO mostraPerfil(@PathVariable(value = "id") long id) {
         Usuario usuario = usuarioService.listaUm(id);
         return PerfilDTO.transformaPerfil(usuario);
+    }
+
+    // TODO: 13/05/2020
+    @GetMapping(value = "{id}/logar")
+    public Usuario verificaSenha(@PathVariable(value = "id") long id) {
+        Scanner entrada = new Scanner(System.in);
+        Usuario usuario = usuarioService.listaUm(id);
+        String bcryptHashString = usuario.getSenha();
+        System.out.println("Digite a Senha:");
+        String senhaTop = entrada.nextLine();
+        BCrypt.Result result = BCrypt.verifyer().verify(senhaTop.toCharArray(), bcryptHashString);
+        System.out.println(result);
+        return usuario;
     }
 
     @DeleteMapping(value = "/{id}", consumes="application/json")
