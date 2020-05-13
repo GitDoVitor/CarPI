@@ -68,7 +68,7 @@ public class UsuarioController {
 
     // TODO: 13/05/2020
     @GetMapping(value = "{id}/logar")
-    public Usuario verificaSenha(@PathVariable(value = "id") long id) {
+    public void verificaSenha(@PathVariable(value = "id") long id) {
         Scanner entrada = new Scanner(System.in);
         Usuario usuario = usuarioService.listaUm(id);
         String bcryptHashString = usuario.getSenha();
@@ -76,7 +76,6 @@ public class UsuarioController {
         String senhaTop = entrada.nextLine();
         BCrypt.Result result = BCrypt.verifyer().verify(senhaTop.toCharArray(), bcryptHashString);
         System.out.println(result);
-        return usuario;
     }
 
     @ApiOperation(value = "Deleta usuário pelo id")

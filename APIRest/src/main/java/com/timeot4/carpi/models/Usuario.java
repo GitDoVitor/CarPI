@@ -32,14 +32,6 @@ public class Usuario {
         this.cpf = cpf;
     }
 
-    public Usuario(String nome, String email, Endereco endereco, Telefone telefone, String cpf) {
-        this.nome = nome;
-        this.email = email;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.cpf = cpf;
-    }
-
     @Override
     public String toString() {
         return "Usuario{" +
