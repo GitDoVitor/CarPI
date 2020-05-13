@@ -30,6 +30,12 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
+    @ApiOperation(value = "Adiciona um novo usuário")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Usuário adicionado com sucesso"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+    })
     @PostMapping
     public ResponseEntity<UsuarioRespostaDTO> salvar(@RequestBody UsuarioDTO dto) {
         Usuario usuarioTeste = dto.transformaObjeto();
@@ -67,16 +73,16 @@ public class UsuarioController {
     }
 
     // TODO: 13/05/2020
-    @GetMapping(value = "{id}/logar")
-    public void verificaSenha(@PathVariable(value = "id") long id) {
-        Scanner entrada = new Scanner(System.in);
-        Usuario usuario = usuarioService.listaUm(id);
-        String bcryptHashString = usuario.getSenha();
-        System.out.println("Digite a Senha:");
-        String senhaTop = entrada.nextLine();
-        BCrypt.Result result = BCrypt.verifyer().verify(senhaTop.toCharArray(), bcryptHashString);
-        System.out.println(result);
-    }
+//    @GetMapping(value = "{id}/logar")
+//    public void verificaSenha(@PathVariable(value = "id") long id) {
+//        Scanner entrada = new Scanner(System.in);
+//        Usuario usuario = usuarioService.listaUm(id);
+//        String bcryptHashString = usuario.getSenha();
+//        System.out.println("Digite a Senha:");
+//        String senhaTop = entrada.nextLine();
+//        BCrypt.Result result = BCrypt.verifyer().verify(senhaTop.toCharArray(), bcryptHashString);
+//        System.out.println(result);
+//    }
 
     @ApiOperation(value = "Deleta usuário pelo id")
     @ApiResponses(value = {
