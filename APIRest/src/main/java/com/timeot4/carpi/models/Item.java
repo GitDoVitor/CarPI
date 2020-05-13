@@ -3,8 +3,8 @@ package com.timeot4.carpi.models;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="Itens")
@@ -14,7 +14,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToMany
-    private List<Produto> produto = new ArrayList<>();
+    private Set<Produto> produto = new HashSet<Produto>();
     private Integer qtdProdutos;
     private double preco;
     private String observacao;

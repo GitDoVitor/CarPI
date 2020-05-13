@@ -55,7 +55,7 @@ public class UsuarioController {
         Usuario usuario = usuarioService.listaUm(id);
         return PerfilDTO.transformaPerfil(usuario);
     }
-    
+
     @DeleteMapping(value = "/{id}", consumes="application/json")
     public void deletaUm(@PathVariable(value = "id") long id) {
         usuarioService.deletaUsuario(id);

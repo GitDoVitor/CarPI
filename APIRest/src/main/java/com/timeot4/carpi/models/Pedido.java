@@ -5,7 +5,8 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="Pedidos")
@@ -15,13 +16,14 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
     private double preco;
     private LocalDate data;
     private String metodoPagamento;
     private Boolean entrega;
     @OneToMany
-    private List<Item> item = new ArrayList<>();
+    private Set<Item> item = new HashSet<Item>();
 
     @Override
     public String toString() {

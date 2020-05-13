@@ -21,34 +21,6 @@ public class Usuario {
     private String cpf;
     private Boolean adm;
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public Telefone getTelefone() {
-        return telefone;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public Boolean getAdm() {
-        return adm;
-    }
-
     public Usuario(String nome, String email, String senha, Endereco endereco, Telefone telefone, String cpf) {
         this.nome = nome;
         this.email = email;
