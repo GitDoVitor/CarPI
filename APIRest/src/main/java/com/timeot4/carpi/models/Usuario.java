@@ -2,12 +2,14 @@ package com.timeot4.carpi.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @NoArgsConstructor
 @Entity
 @Getter
+@Setter
 @Table(name = "Usuarios")
 public class Usuario {
     @Id

@@ -1,6 +1,7 @@
 package com.timeot4.carpi.controller;
 
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.timeot4.carpi.dto.PerfilDTO;
 import com.timeot4.carpi.dto.UsuarioDTO;
 import com.timeot4.carpi.dto.UsuarioRespostaDTO;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/usuarios")
@@ -29,8 +31,11 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<UsuarioRespostaDTO> salvar(@RequestBody UsuarioDTO dto) {
-        Usuario usuario = usuarioService.salvar(dto.transformaObjeto());
-        return new ResponseEntity<>(UsuarioRespostaDTO.transformaEmDTO(usuario), HttpStatus.CREATED);
+        Usuario usuarioTeste = usuarioService.salvar(dto.transformaObjeto());
+        String senha = usuarioTeste.getSenha();
+        String bcryptHashString = BCrypt.withDefaults().hashToString(12, senha.toCharArray());
+        usuarioTeste.setSenha(bcryptHashString);
+        return new ResponseEntity<>(UsuarioRespostaDTO.transformaEmDTO(usuarioTeste), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Retorna uma lista de pessoas")
@@ -41,6 +46,9 @@ public class UsuarioController {
     })
     @GetMapping(produces="application/json")
     public List<Usuario> listarTodos() {
+//        List<Usuario> usuario = new ArrayList<>();
+//        usuario = usuarioService.listar();
+//        return PerfilDTO.transformaPerfil(usuario);
         return usuarioService.listar();
     }
 
