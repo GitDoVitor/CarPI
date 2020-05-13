@@ -40,9 +40,9 @@ public class UsuarioController {
         return new ResponseEntity<>(UsuarioRespostaDTO.transformaEmDTO(usuarioTeste), HttpStatus.CREATED);
     }
 
-    @ApiOperation(value = "Retorna uma lista de pessoas")
+    @ApiOperation(value = "Lista todos os usuários")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Retorna a lista de pessoas"),
+            @ApiResponse(code = 200, message = "Usuários listados com sucesso"),
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
@@ -54,9 +54,9 @@ public class UsuarioController {
         return usuarioService.listar();
     }
 
-    @ApiOperation(value = "Retorna um Usuário")
+    @ApiOperation(value = "Lista um usuário")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Retorna um usuário"),
+            @ApiResponse(code = 200, message = "Usuário listado com sucesso"),
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
