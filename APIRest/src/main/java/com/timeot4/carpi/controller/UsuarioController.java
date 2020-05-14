@@ -75,16 +75,16 @@ public class UsuarioController {
     }
 
     // TODO: 13/05/2020
-//    @GetMapping(value = "{id}/logar")
-//    public void verificaSenha(@PathVariable(value = "id") long id) {
-//        Scanner entrada = new Scanner(System.in);
-//        Usuario usuario = usuarioService.listaUm(id);
-//        String bcryptHashString = usuario.getSenha();
-//        System.out.println("Digite a Senha:");
-//        String senhaTop = entrada.nextLine();
-//        BCrypt.Result result = BCrypt.verifyer().verify(senhaTop.toCharArray(), bcryptHashString);
-//        System.out.println(result);
-//    }
+    @GetMapping(value = "{id}/logar")
+    public void verificaSenha(@PathVariable(value = "id") long id) {
+        Scanner entrada = new Scanner(System.in);
+        Usuario usuario = usuarioService.listaUm(id);
+        String bcryptHashString = usuario.getSenha();
+        System.out.println("Digite a Senha:");
+        String senhaTop = entrada.nextLine();
+        BCrypt.Result result = BCrypt.verifyer().verify(senhaTop.toCharArray(), bcryptHashString);
+        System.out.println(result);
+    }
 
     @ApiOperation(value = "Deleta usuário pelo id")
     @ApiResponses(value = {
