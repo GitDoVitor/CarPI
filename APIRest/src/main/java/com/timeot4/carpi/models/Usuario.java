@@ -21,7 +21,7 @@ public class Usuario {
     private Endereco endereco;
     private Telefone telefone;
     private String cpf;
-    private Boolean adm;
+    private Boolean adm = false;
 
     public Usuario(String nome, String email, String senha, Endereco endereco, Telefone telefone, String cpf) {
         this.nome = nome;

@@ -53,11 +53,13 @@ public class UsuarioController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @GetMapping(produces="application/json")
-    public List<Usuario> listarTodos() {
-//        List<Usuario> usuario = new ArrayList<>();
-//        usuario = usuarioService.listar();
-//        return PerfilDTO.transformaPerfil(usuario);
-        return usuarioService.listar();
+    public List<PerfilDTO> listarTodos() {
+        List<Usuario> usuariosList = usuarioService.listar();
+        List<PerfilDTO> usuariosDTOList = new ArrayList();
+        usuariosList.forEach(usuario -> {
+            usuariosDTOList.add(PerfilDTO.transformaPerfil(usuario));
+        });
+        return usuariosDTOList;
     }
 
     @ApiOperation(value = "Lista um usuário")
