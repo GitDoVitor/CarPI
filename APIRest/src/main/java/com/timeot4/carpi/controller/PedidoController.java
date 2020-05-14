@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/pedidos")
 public class PedidoController {
-
     @Autowired
     PedidoService pedidoService;
 
