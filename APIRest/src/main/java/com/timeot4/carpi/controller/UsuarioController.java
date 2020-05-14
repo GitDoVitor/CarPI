@@ -30,6 +30,15 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
+<<<<<<< HEAD
+=======
+    @ApiOperation(value = "Adiciona um novo usuário")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Usuário adicionado com sucesso"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+    })
+>>>>>>> stefanbranch
     @PostMapping
     public ResponseEntity<UsuarioRespostaDTO> salvar(@RequestBody UsuarioDTO dto) {
         Usuario usuarioTeste = dto.transformaObjeto();
@@ -40,13 +49,20 @@ public class UsuarioController {
         return new ResponseEntity<>(UsuarioRespostaDTO.transformaEmDTO(usuarioTeste), HttpStatus.CREATED);
     }
 
+<<<<<<< HEAD
     @ApiOperation(value = "Retorna uma lista de pessoas")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Retorna a lista de pessoas"),
+=======
+    @ApiOperation(value = "Lista todos os usuários")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Usuários listados com sucesso"),
+>>>>>>> stefanbranch
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @GetMapping(produces="application/json")
+<<<<<<< HEAD
     public List<Usuario> listarTodos() {
 //        List<Usuario> usuario = new ArrayList<>();
 //        usuario = usuarioService.listar();
@@ -57,6 +73,20 @@ public class UsuarioController {
     @ApiOperation(value = "Retorna um Usuário")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Retorna um usuário"),
+=======
+    public List<PerfilDTO> listarTodos() {
+        List<Usuario> usuariosList = usuarioService.listar();
+        List<PerfilDTO> usuariosDTOList = new ArrayList();
+        usuariosList.forEach(usuario -> {
+            usuariosDTOList.add(PerfilDTO.transformaPerfil(usuario));
+        });
+        return usuariosDTOList;
+    }
+
+    @ApiOperation(value = "Lista um usuário")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Usuário listado com sucesso"),
+>>>>>>> stefanbranch
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
@@ -67,6 +97,7 @@ public class UsuarioController {
     }
 
     // TODO: 13/05/2020
+<<<<<<< HEAD
     @GetMapping(value = "{id}/logar")
     public Usuario verificaSenha(@PathVariable(value = "id") long id) {
         Scanner entrada = new Scanner(System.in);
@@ -79,11 +110,39 @@ public class UsuarioController {
         return usuario;
     }
 
+=======
+//    @GetMapping(value = "{id}/logar")
+//    public void verificaSenha(@PathVariable(value = "id") long id) {
+//        Scanner entrada = new Scanner(System.in);
+//        Usuario usuario = usuarioService.listaUm(id);
+//        String bcryptHashString = usuario.getSenha();
+//        System.out.println("Digite a Senha:");
+//        String senhaTop = entrada.nextLine();
+//        BCrypt.Result result = BCrypt.verifyer().verify(senhaTop.toCharArray(), bcryptHashString);
+//        System.out.println(result);
+//    }
+
+    @ApiOperation(value = "Deleta usuário pelo id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Usuário deletado com sucesso"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+    })
+>>>>>>> stefanbranch
     @DeleteMapping(value = "/{id}", consumes="application/json")
     public void deletaUm(@PathVariable(value = "id") long id) {
         usuarioService.deletaUsuario(id);
     }
 
+<<<<<<< HEAD
+=======
+    @ApiOperation(value = "Edita usuário pelo id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Usuário editado com sucesso"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+    })
+>>>>>>> stefanbranch
     @PutMapping(value = "/{id}", produces="application/json", consumes = "application/json")
     public Usuario editaUsuario(@RequestBody Usuario usuario){
         return usuarioService.salvar(usuario);

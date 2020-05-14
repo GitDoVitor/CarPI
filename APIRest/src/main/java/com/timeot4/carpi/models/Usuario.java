@@ -21,7 +21,11 @@ public class Usuario {
     private Endereco endereco;
     private Telefone telefone;
     private String cpf;
+<<<<<<< HEAD
     private Boolean adm;
+=======
+    private Boolean adm = false;
+>>>>>>> stefanbranch
 
     public Usuario(String nome, String email, String senha, Endereco endereco, Telefone telefone, String cpf) {
         this.nome = nome;
@@ -32,6 +36,7 @@ public class Usuario {
         this.cpf = cpf;
     }
 
+<<<<<<< HEAD
     public Usuario(String nome, String email, Endereco endereco, Telefone telefone, String cpf) {
         this.nome = nome;
         this.email = email;
@@ -40,6 +45,8 @@ public class Usuario {
         this.cpf = cpf;
     }
 
+=======
+>>>>>>> stefanbranch
     @Override
     public String toString() {
         return "Usuario{" +
