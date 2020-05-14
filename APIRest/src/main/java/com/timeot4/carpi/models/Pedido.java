@@ -22,6 +22,13 @@ public class Pedido {
     private LocalDate data;
     private String metodoPagamento;
     private Boolean entrega;
+    private enum Estado {
+        ATIVO,
+        PREPARANDO,
+        PRONTO,
+        CANCELADO,
+        FINALIZADO,
+    }
     @OneToMany
     private Set<Item> item = new HashSet<Item>();
 
