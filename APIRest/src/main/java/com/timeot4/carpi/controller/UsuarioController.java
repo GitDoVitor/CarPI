@@ -52,7 +52,7 @@ public class UsuarioController {
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
-    @GetMapping(produces="application/json")
+    @GetMapping(produces = "application/json")
     public List<PerfilDTO> listarTodos() {
         List<Usuario> usuariosList = usuarioService.listar();
         List<PerfilDTO> usuariosDTOList = new ArrayList();
@@ -68,7 +68,7 @@ public class UsuarioController {
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
-    @GetMapping(value = "/{id}", produces="application/json")
+    @GetMapping(value = "/{id}", produces = "application/json")
     public PerfilDTO mostraPerfil(@PathVariable(value = "id") long id) {
         Usuario usuario = usuarioService.listaUm(id);
         return PerfilDTO.transformaPerfil(usuario);
@@ -85,14 +85,14 @@ public class UsuarioController {
         BCrypt.Result result = BCrypt.verifyer().verify(senhaTop.toCharArray(), bcryptHashString);
         System.out.println(result);
     }
-
+//teste
     @ApiOperation(value = "Deleta usuário pelo id")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Usuário deletado com sucesso"),
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
-    @DeleteMapping(value = "/{id}", consumes="application/json")
+    @DeleteMapping(value = "/{id}", consumes = "application/json")
     public void deletaUm(@PathVariable(value = "id") long id) {
         usuarioService.deletaUsuario(id);
     }
@@ -103,8 +103,8 @@ public class UsuarioController {
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
-    @PutMapping(value = "/{id}", produces="application/json", consumes = "application/json")
-    public Usuario editaUsuario(@RequestBody Usuario usuario){
+    @PutMapping(value = "/{id}", produces = "application/json", consumes = "application/json")
+    public Usuario editaUsuario(@RequestBody Usuario usuario) {
         return usuarioService.salvar(usuario);
     }
 }
