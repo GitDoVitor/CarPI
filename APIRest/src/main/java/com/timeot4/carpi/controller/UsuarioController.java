@@ -31,12 +31,12 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @ApiOperation(value = "Adiciona um novo usuário")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Usuário adicionado com sucesso"),
-            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
-            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
-    })
+    @ApiOperation(value = "Adiciona um novo usuário.")
+		@ApiResponses(value = {
+						@ApiResponse(code = 200, message = "Usuário adicionado com sucesso"),
+						@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+						@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+		})
     @PostMapping
     public ResponseEntity<UsuarioRespostaDTO> salvar(@RequestBody UsuarioDTO dto) {
         Usuario usuarioTeste = dto.transformaObjeto();
@@ -49,12 +49,12 @@ public class UsuarioController {
         return new ResponseEntity<>(UsuarioRespostaDTO.transformaEmDTO(usuarioTeste), HttpStatus.CREATED);
     }
 
-    @ApiOperation(value = "Lista todos os usuários")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Usuários listados com sucesso"),
-            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
-            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
-    })
+		@ApiOperation(value = "Lista todos os usuários.")
+		@ApiResponses(value = {
+						@ApiResponse(code = 200, message = "Usuários listados com sucesso"),
+						@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+						@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+		})
     @GetMapping(produces = "application/json")
     public List<PerfilDTO> listarTodos() {
         List<Usuario> usuariosList = usuarioService.listar();
@@ -65,12 +65,12 @@ public class UsuarioController {
         return usuariosDTOList;
     }
 
-    @ApiOperation(value = "Lista um usuário")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Usuário listado com sucesso"),
-            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
-            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
-    })
+		@ApiOperation(value = "Lista um usuário para mostrar o perfil do mesmo.")
+		@ApiResponses(value = {
+						@ApiResponse(code = 200, message = "Usuário listado com sucesso"),
+						@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+						@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+		})
     @GetMapping(value = "/{id}", produces = "application/json")
     public PerfilDTO mostraPerfil(@PathVariable(value = "id") long id) {
         Usuario usuario = usuarioService.listaUm(id);
@@ -89,23 +89,23 @@ public class UsuarioController {
         System.out.println(result);
     }
 //teste
-    @ApiOperation(value = "Deleta usuário pelo id")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Usuário deletado com sucesso"),
-            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
-            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
-    })
+@ApiOperation(value = "Deleta um usuário pelo id.")
+@ApiResponses(value = {
+				@ApiResponse(code = 200, message = "Usuário deletado com sucesso"),
+				@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+				@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+})
     @DeleteMapping(value = "/{id}", consumes = "application/json")
     public void deletaUm(@PathVariable(value = "id") long id) {
         usuarioService.deletaUsuario(id);
     }
 
-    @ApiOperation(value = "Edita usuário pelo id")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Usuário editado com sucesso"),
-            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
-            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
-    })
+		@ApiOperation(value = "Edita os dados do usuário pelo id.")
+		@ApiResponses(value = {
+						@ApiResponse(code = 200, message = "Usuário editado com sucesso"),
+						@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+						@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+		})
     @PutMapping(value = "/{id}", produces = "application/json", consumes = "application/json")
     public Usuario editaUsuario(@RequestBody Usuario usuario) {
         return usuarioService.salvar(usuario);
