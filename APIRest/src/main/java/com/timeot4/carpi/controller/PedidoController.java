@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/pedidos")
@@ -26,6 +27,8 @@ public class PedidoController {
     })
     @PostMapping
     public ResponseEntity<Pedido> salvar(@RequestBody Pedido pedido) {
+        String uniqueID = UUID.randomUUID().toString();
+        pedido.setId(uniqueID);
         pedido = pedidoService.salvar(pedido);
         return new ResponseEntity<>(pedido, HttpStatus.CREATED);
     }

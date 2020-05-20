@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 @RequestMapping("/usuarios")
 @RestController
@@ -39,7 +40,9 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<UsuarioRespostaDTO> salvar(@RequestBody UsuarioDTO dto) {
         Usuario usuarioTeste = dto.transformaObjeto();
+        String uniqueID = UUID.randomUUID().toString();
         String senha = usuarioTeste.getSenha();
+        usuarioTeste.setId(uniqueID);
         String bcryptHashString = BCrypt.withDefaults().hashToString(12, senha.toCharArray());
         usuarioTeste.setSenha(bcryptHashString);
         usuarioTeste = usuarioService.salvar(usuarioTeste);

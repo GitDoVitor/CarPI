@@ -2,7 +2,10 @@ package com.timeot4.carpi.models;
 
 import lombok.Getter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +14,6 @@ import java.util.Set;
 @Getter
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToMany
     private Set<Produto> produto = new HashSet<Produto>();

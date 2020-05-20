@@ -4,9 +4,7 @@ import com.timeot4.carpi.models.Endereco;
 import com.timeot4.carpi.models.Telefone;
 import com.timeot4.carpi.models.Usuario;
 import lombok.Getter;
-import lombok.Setter;
 
-// DTO DE CRIAÇÃO DE PERFIL
 @Getter
 public class UsuarioDTO {
 

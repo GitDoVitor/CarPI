@@ -10,7 +10,7 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 public class UsuarioRespostaDTO {
-    private long id;
+    private String id;
     private String nome;
     private String email;
     private Endereco endereco;
