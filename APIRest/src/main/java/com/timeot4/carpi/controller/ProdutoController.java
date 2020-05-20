@@ -1,5 +1,7 @@
 package com.timeot4.carpi.controller;
 
+import com.timeot4.carpi.dto.ProdutoDTO;
+import com.timeot4.carpi.dto.ProdutoRespostaDTO;
 import com.timeot4.carpi.models.Produto;
 import com.timeot4.carpi.services.ProdutoService;
 import io.swagger.annotations.ApiOperation;
@@ -27,12 +29,14 @@ public class ProdutoController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @PostMapping
-    public ResponseEntity<Produto> salvar(@RequestBody Produto produto) {
+    public ResponseEntity<ProdutoRespostaDTO> salvar(@RequestBody ProdutoDTO dto) {
+        Produto produto = dto.transformaObjeto();
         String uniqueID = UUID.randomUUID().toString();
         produto.setId(uniqueID);
         produto = produtoService.salvar(produto);
-        return new ResponseEntity<>(produto, HttpStatus.CREATED);
+        return new ResponseEntity<>(ProdutoRespostaDTO.transformaEmDTO(produto), HttpStatus.CREATED);
     }
+
 
     @ApiOperation(value = "Lista todos os produtos")
     @ApiResponses(value = {
@@ -74,7 +78,7 @@ public class ProdutoController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @PutMapping("/{id}")
-    public Produto editaProduto(@RequestBody Produto produto){
+    public Produto editaProduto(@RequestBody Produto produto) {
         return produtoService.salvar(produto);
     }
 }

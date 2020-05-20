@@ -23,6 +23,7 @@ public class Usuario {
     private Telefone telefone;
     private String cpf;
     private Boolean adm = false;
+    private Boolean ativo = true;
 
     public Usuario(String nome, String email, String senha, Endereco endereco, Telefone telefone, String cpf) {
         this.nome = nome;

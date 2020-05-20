@@ -17,8 +17,9 @@ public class UsuarioRespostaDTO {
     private Telefone telefone;
     private String cpf;
     private Boolean adm;
+    private Boolean ativo;
 
     public static UsuarioRespostaDTO transformaEmDTO(Usuario usuario) {
-        return new UsuarioRespostaDTO(usuario.getId(), usuario.getNome(), usuario.getEmail(), usuario.getEndereco(), usuario.getTelefone(), usuario.getCpf(), usuario.getAdm());
+        return new UsuarioRespostaDTO(usuario.getId(), usuario.getNome(), usuario.getEmail(), usuario.getEndereco(), usuario.getTelefone(), usuario.getCpf(), usuario.getAdm(), usuario.getAtivo());
     }
 }
