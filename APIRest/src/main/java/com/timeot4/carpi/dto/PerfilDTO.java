@@ -5,7 +5,6 @@ import com.timeot4.carpi.models.Telefone;
 import com.timeot4.carpi.models.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @Getter

@@ -27,21 +27,9 @@ public class Pedido {
         PREPARANDO,
         PRONTO,
         CANCELADO,
-        FINALIZADO,
+        FINALIZADO
     }
     @OneToMany
     private Set<Item> item = new HashSet<Item>();
 
-    @Override
-    public String toString() {
-        return "Pedido{" +
-                "id=" + id +
-                ", usuario=" + usuario +
-                ", preco=" + preco +
-                ", data=" + data +
-                ", metodoPagamento='" + metodoPagamento + '\'' +
-                ", entrega=" + entrega +
-                ", item=" + item +
-                '}';
-    }
 }
