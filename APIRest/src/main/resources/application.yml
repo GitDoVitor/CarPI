@@ -1,11 +1,4 @@
 spring:
-  #  security:
-  #    oauth2:
-  #      client:
-  #        registration:
-  #          github:
-  #            clientId: 009821e72a94edd0f30f
-  #            clientSecret: 4c2c15fbe09e0f2f1f9ec3ecfa80ff7c58633066
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     password: 123db
