@@ -1,4 +1,6 @@
 spring:
+  jwt:
+    secret: SeguraOGrosso
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     password: 123db
