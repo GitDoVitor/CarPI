@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.ArrayList;
 
 @NoArgsConstructor
 @Entity
@@ -25,24 +26,27 @@ public class Usuario {
     private Boolean adm = false;
     private Boolean ativo = true;
 
-    public Usuario(String nome, String email, String senha, Endereco endereco, Telefone telefone, String cpf) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.cpf = cpf;
-    }
+		public Usuario(String nome, String email, String senha, Endereco endereco, Telefone telefone, String cpf) {
+				this.nome = nome;
+				this.email = email;
+				this.senha = senha;
+				this.endereco = endereco;
+				this.telefone = telefone;
+				this.cpf = cpf;
+		}
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                ", endereco=" + endereco +
-                ", telefone='" + telefone + '\'' +
+		public <E> Usuario(String email, String senha, ArrayList<E> es) {
+		}
+
+		@Override
+		public String toString() {
+				return "Usuario{" +
+								"id=" + id +
+								", nome='" + nome + '\'' +
+								", email='" + email + '\'' +
+								", senha='" + senha + '\'' +
+								", endereco=" + endereco +
+								", telefone='" + telefone + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", adm=" + adm +
                 '}';

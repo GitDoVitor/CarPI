@@ -1,9 +1,9 @@
 spring:
-  jwt:
-    secret: SeguraOGrosso
+#  jwt:
+  #    secret: SeguraOGrosso
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    password: 123db
+    password: 1234db
     testWhileIdle: true
     url: jdbc:mariadb://localhost:3306/dbCarBurguer?createDatabaseIfNotExist=true
     username: root

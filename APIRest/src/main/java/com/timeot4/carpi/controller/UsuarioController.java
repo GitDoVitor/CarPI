@@ -89,6 +89,17 @@ public class UsuarioController {
 				System.out.println(result);
 		}
 
+//		@GetMapping(value = "/gerar")
+//		public void geraID() {
+//				Scanner entrada = new Scanner(System.in);
+//				String uniqueID = UUID.randomUUID().toString();
+//				System.out.println(uniqueID);
+//				System.out.println("Digite a Senha:");
+//				String senha = entrada.nextLine();
+//				String bcryptHashString = BCrypt.withDefaults().hashToString(12, senha.toCharArray());
+//				System.out.println(bcryptHashString);
+//		}
+
 		//teste
 		@ApiOperation(value = "Deleta um usuário pelo id.")
 		@ApiResponses(value = {
