@@ -1,6 +1,7 @@
 package com.timeot4.carpi.models;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,24 +13,13 @@ import java.util.Set;
 @Entity
 @Table(name="Itens")
 @Getter
+@Setter
 public class Item {
-    @Id
-    private Long id;
-    @OneToMany
-    private Set<Produto> produto = new HashSet<Produto>();
-    private Integer qtdProdutos;
-    private double preco;
+		@Id
+		private String id;
+		@OneToMany
+		private Set<Produto> produto = new HashSet<Produto>();
+		private Long qtdProdutos;
+		private double preco;
     private String observacao;
-
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", produto=" + produto +
-                ", qtdProdutos=" + qtdProdutos +
-                ", preco=" + preco +
-                ", observacao='" + observacao + '\'' +
-                '}';
-    }
 }

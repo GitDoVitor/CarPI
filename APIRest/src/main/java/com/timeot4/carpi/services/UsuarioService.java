@@ -25,30 +25,21 @@ public class UsuarioService {
     public List<Usuario> listar() {
 				List<Usuario> usuarios = usuarioRepository.findAll();
 				List usuariosAtivos = new ArrayList();
-
 				usuarios.forEach(usuario -> {
 						if (usuario.getAtivo() == true) {
 								usuariosAtivos.add(usuario);
 						}
 				});
-
 				return usuariosAtivos;
 		}
 
 		public Usuario listaUm(@PathVariable(value = "id") String id) {
 				Usuario usuario = usuarioRepository.findById(id);
 				Usuario usuarioAtivo = new Usuario();
-
 				if (usuario.getAtivo() == true) {
 						usuarioAtivo = usuario;
 				}
 				return usuarioAtivo;
-		}
-
-		//todo
-		// verificar qual melhor forma de filtrar o usuario
-		public void deletaUsuario(@PathVariable(value = "id") long id) {
-				usuarioRepository.deleteById(id);
 		}
 
 }

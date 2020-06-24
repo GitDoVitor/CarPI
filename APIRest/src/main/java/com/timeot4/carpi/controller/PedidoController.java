@@ -45,24 +45,26 @@ public class PedidoController {
     }
 
     @ApiOperation(value = "Lista um pedido pelo id")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Pedido listado com sucesso"),
-            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
-            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
-    })
-    @GetMapping("/{id}")
-    public Pedido listaUm(@PathVariable(value = "id") long id) {
-        return pedidoService.listaUm(id);
-    }
+		@ApiResponses(value = {
+						@ApiResponse(code = 200, message = "Pedido listado com sucesso"),
+						@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+						@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+		})
+		@GetMapping("/{id}")
+		public Pedido listaUm(@PathVariable(value = "id") String id) {
+				return pedidoService.listaUm(id);
+		}
 
-    @ApiOperation(value = "Deleta um pedido pelo id")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Pedido deletado com sucesso"),
-            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
-            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
-    })
-    @DeleteMapping("/{id}")
-    public void deletaUm(@PathVariable(value = "id") long id) {
-        pedidoService.deletaPedido(id);
-    }
+		@ApiOperation(value = "Deleta um pedido pelo id")
+		@ApiResponses(value = {
+						@ApiResponse(code = 200, message = "Pedido deletado com sucesso"),
+						@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+						@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+		})
+		@PutMapping("/{id}")
+		public void deletaUm(@PathVariable(value = "id") String id) {
+				Pedido pedido = pedidoService.listaUm(id);
+				pedido.setEstado(Pedido.Estado.CANCELADO);
+				pedidoService.salvar(pedido);
+		}
 }

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
-    Pedido findById(long id);
+    Pedido findById(String id);
 }

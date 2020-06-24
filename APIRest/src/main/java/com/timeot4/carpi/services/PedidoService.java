@@ -1,7 +1,6 @@
 package com.timeot4.carpi.services;
 
 import com.timeot4.carpi.models.Pedido;
-import com.timeot4.carpi.models.Produto;
 import com.timeot4.carpi.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,9 +23,9 @@ public class PedidoService {
         return pedidoRepository.findAll();
     }
 
-    public Pedido listaUm(@PathVariable(value = "id") long id) {
-        return pedidoRepository.findById(id);
-    }
+    public Pedido listaUm(@PathVariable(value = "id") String id) {
+				return pedidoRepository.findById(id);
+		}
 
     public void deletaPedido(@PathVariable(value = "id") long id) {
         pedidoRepository.deleteById(id);

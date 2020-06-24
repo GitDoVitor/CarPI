@@ -14,9 +14,10 @@ public class UsuarioDTO {
     private Endereco endereco;
     private Telefone telefone;
     private String cpf;
+		private Boolean ativo = true;
 
     public Usuario transformaObjeto() {
-        return new Usuario(nome, email, senha, endereco, telefone, cpf);
+				return new Usuario(nome, email, senha, endereco, telefone, cpf, ativo);
     }
 
 

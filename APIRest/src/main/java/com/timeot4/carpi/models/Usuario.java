@@ -3,11 +3,13 @@ package com.timeot4.carpi.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.ArrayList;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @NoArgsConstructor
 @Entity
@@ -15,40 +17,32 @@ import java.util.ArrayList;
 @Setter
 @Table(name = "Usuarios")
 public class Usuario {
-    @Id
-    private String id;
-    private String nome;
-    private String email;
-    private String senha;
-    private Endereco endereco;
-    private Telefone telefone;
-    private String cpf;
-    private Boolean adm = false;
-    private Boolean ativo = true;
 
-		public Usuario(String nome, String email, String senha, Endereco endereco, Telefone telefone, String cpf) {
+		private enum Role {USER, ADMIN, USER_MANAGER}
+
+		@Id
+		private String id;
+		private String nome;
+		@Email
+		@NotEmpty
+		private String email;
+		private String senha;
+		private Endereco endereco;
+		private Telefone telefone;
+		@CPF
+		private String cpf;
+		private Boolean ativo;
+		private Boolean adm = false;
+		private Role role = Role.USER;
+
+		public Usuario(String nome, String email, String senha, Endereco endereco, Telefone telefone, String cpf, Boolean ativo) {
 				this.nome = nome;
 				this.email = email;
 				this.senha = senha;
 				this.endereco = endereco;
 				this.telefone = telefone;
 				this.cpf = cpf;
+				this.ativo = ativo;
 		}
 
-		public <E> Usuario(String email, String senha, ArrayList<E> es) {
-		}
-
-		@Override
-		public String toString() {
-				return "Usuario{" +
-								"id=" + id +
-								", nome='" + nome + '\'' +
-								", email='" + email + '\'' +
-								", senha='" + senha + '\'' +
-								", endereco=" + endereco +
-								", telefone='" + telefone + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", adm=" + adm +
-                '}';
-    }
 }

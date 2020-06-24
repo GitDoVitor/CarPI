@@ -1,6 +1,4 @@
 spring:
-#  jwt:
-  #    secret: SeguraOGrosso
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     password: 1234db
@@ -18,3 +16,9 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
+security:
+  oauth2:
+    client:
+      scope: password
+      client-id: timeOt4
+      client-secret: 1234db

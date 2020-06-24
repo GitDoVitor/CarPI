@@ -6,6 +6,7 @@ import com.timeot4.carpi.dto.PerfilDTO;
 import com.timeot4.carpi.dto.UsuarioDTO;
 import com.timeot4.carpi.dto.UsuarioRespostaDTO;
 import com.timeot4.carpi.models.Usuario;
+import com.timeot4.carpi.repository.UsuarioRepository;
 import com.timeot4.carpi.services.UsuarioService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.UUID;
 
 @RequestMapping("/usuarios")
@@ -25,10 +25,12 @@ import java.util.UUID;
 public class UsuarioController {
 
 		public final UsuarioService usuarioService;
+		public final UsuarioRepository usuarioRepository;
 
 		@Autowired
-		public UsuarioController(UsuarioService usuarioService) {
+		public UsuarioController(UsuarioService usuarioService, UsuarioRepository usuarioRepository) {
 				this.usuarioService = usuarioService;
+				this.usuarioRepository = usuarioRepository;
 		}
 
 		@ApiOperation(value = "Adiciona um novo usuário.")
@@ -39,14 +41,14 @@ public class UsuarioController {
 		})
 		@PostMapping
 		public ResponseEntity<UsuarioRespostaDTO> salvar(@RequestBody UsuarioDTO dto) {
-				Usuario usuarioTeste = dto.transformaObjeto();
+				Usuario usuario = dto.transformaObjeto();
 				String uniqueID = UUID.randomUUID().toString();
-				String senha = usuarioTeste.getSenha();
-				usuarioTeste.setId(uniqueID);
+				String senha = usuario.getSenha();
+				usuario.setId(uniqueID);
 				String bcryptHashString = BCrypt.withDefaults().hashToString(12, senha.toCharArray());
-				usuarioTeste.setSenha(bcryptHashString);
-				usuarioTeste = usuarioService.salvar(usuarioTeste);
-				return new ResponseEntity<>(UsuarioRespostaDTO.transformaEmDTO(usuarioTeste), HttpStatus.CREATED);
+				usuario.setSenha(bcryptHashString);
+				usuario = usuarioService.salvar(usuario);
+				return new ResponseEntity<>(UsuarioRespostaDTO.transformaEmDTO(usuario), HttpStatus.CREATED);
 		}
 
 		@ApiOperation(value = "Lista todos os usuários.")
@@ -55,71 +57,53 @@ public class UsuarioController {
 						@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
 						@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
 		})
-		@GetMapping(produces = "application/json")
-		public List<PerfilDTO> listarTodos() {
+		@GetMapping
+		public ResponseEntity<List<PerfilDTO>> listarTodos() {
 				List<Usuario> usuariosList = usuarioService.listar();
 				List<PerfilDTO> usuariosDTOList = new ArrayList();
 				usuariosList.forEach(usuario -> {
 						usuariosDTOList.add(PerfilDTO.transformaPerfil(usuario));
 				});
-				return usuariosDTOList;
+				return new ResponseEntity<>(usuariosDTOList, HttpStatus.OK);
 		}
 
-		@ApiOperation(value = "Lista um usuário para mostrar o perfil do mesmo.")
+		@ApiOperation(value = "Lista um usuário para mostrar o perfil.")
 		@ApiResponses(value = {
 						@ApiResponse(code = 200, message = "Usuário listado com sucesso"),
 						@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
 						@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
 		})
-		@GetMapping(value = "/{id}", produces = "application/json")
-		public PerfilDTO mostraPerfil(@PathVariable(value = "id") String id) {
+		@GetMapping(value = "/{id}")
+		public ResponseEntity<PerfilDTO> mostraPerfil(@PathVariable(value = "id") String id) {
 				Usuario usuario = usuarioService.listaUm(id);
-				return PerfilDTO.transformaPerfil(usuario);
+				return new ResponseEntity<>(PerfilDTO.transformaPerfil(usuario), HttpStatus.OK);
 		}
 
-		// TODO: 13/05/2020
-		@GetMapping(value = "{id}/logar")
-		public void verificaSenha(@PathVariable(value = "id") String id) {
-				Scanner entrada = new Scanner(System.in);
-				Usuario usuario = usuarioService.listaUm(id);
-				String bcryptHashString = usuario.getSenha();
-				System.out.println("Digite a Senha:");
-				String senhaTop = entrada.nextLine();
-				BCrypt.Result result = BCrypt.verifyer().verify(senhaTop.toCharArray(), bcryptHashString);
-				System.out.println(result);
-		}
-
-//		@GetMapping(value = "/gerar")
-//		public void geraID() {
-//				Scanner entrada = new Scanner(System.in);
-//				String uniqueID = UUID.randomUUID().toString();
-//				System.out.println(uniqueID);
-//				System.out.println("Digite a Senha:");
-//				String senha = entrada.nextLine();
-//				String bcryptHashString = BCrypt.withDefaults().hashToString(12, senha.toCharArray());
-//				System.out.println(bcryptHashString);
-//		}
-
-		//teste
-		@ApiOperation(value = "Deleta um usuário pelo id.")
+		@ApiOperation(value = "Desativa um usuário pelo id.")
 		@ApiResponses(value = {
-						@ApiResponse(code = 200, message = "Usuário deletado com sucesso"),
+						@ApiResponse(code = 200, message = "Usuário desativado com sucesso"),
 						@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
 						@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
 		})
-		@DeleteMapping(value = "/{id}", consumes = "application/json")
-		public void deletaUm(@PathVariable(value = "id") long id) {
-				usuarioService.deletaUsuario(id);
+		@PutMapping(value = "/{id}")
+		public void voceFoiCanceladah(@PathVariable(value = "id") String id) {
+				Usuario usuario = usuarioRepository.findById(id);
+				usuario.setAtivo(false);
+				usuarioService.salvar(usuario);
 		}
 
+		//todo
 		@ApiOperation(value = "Edita os dados do usuário pelo id.")
 		@ApiResponses(value = {
 						@ApiResponse(code = 200, message = "Usuário editado com sucesso"),
 						@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
 						@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
 		})
-		@PutMapping(value = "/{id}", produces = "application/json", consumes = "application/json")
-		public Usuario editaUsuario(@RequestBody Usuario usuario) {
-				return usuarioService.salvar(usuario);
+		@PutMapping(value = "edit/{id}")
+		public void editaUsuario(@PathVariable(value = "id") String id, @RequestBody UsuarioDTO newDto) {
+				Usuario usuario = usuarioRepository.findById(id);
+				if (usuario.getCpf().equals(newDto.getCpf())) {
+						usuarioService.salvar(newDto.transformaObjeto());
+				}
 		}
 }
