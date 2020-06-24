@@ -3,11 +3,10 @@ package com.timeot4.carpi.dto;
 import com.timeot4.carpi.models.Endereco;
 import com.timeot4.carpi.models.Telefone;
 import com.timeot4.carpi.models.Usuario;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @Getter
 public class UsuarioRespostaDTO {
     private String id;

@@ -20,12 +20,14 @@ public class Produto {
     private String descricao;
     private double preco;
     private String urlFoto;
+    private Boolean ativo;
 
-    public Produto(String nome, String descricao, double preco, String urlFoto) {
+    public Produto(String nome, String descricao, double preco, String urlFoto, Boolean ativo) {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.urlFoto = urlFoto;
+        this.ativo = ativo;
     }
 
 }

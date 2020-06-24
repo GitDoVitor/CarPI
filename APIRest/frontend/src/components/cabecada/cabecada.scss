@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.header {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: space-around !important;
+    align-items: flex-start !important;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(214, 214, 214);
+    height: 150px;
+
+    .logo {
+        a {
+            img {
+                width: 250px;
+            }
+        }
+    }
+
+    nav {
+        .lista {
+            display: flex;
+        }
+
+        @for $i from 1 to 4 {
+            .botola#{$i} {
+                margin-top: 50px !important;
+                margin-left: 20px !important;
+                cursor: pointer;
+                display: block !important;
+                padding: 10px !important;
+                color: black;
+                font-size: 20px;
+            }
+
+            .botola#{$i}:hover {
+                transform: translateY(-5px);
+                transition: all 300ms;
+                border-bottom: 4px solid;
+            }
+        }
+
+    }
+}
+
+
+
+// header.header {
+//     display: flex;
+//     width: 100%;
+//     justify-content: space-around;
+//     align-items: flex-start;
+//     background-color: rgb(218, 218, 218);
+
+//     div.logo {
+//         a {
+//             img {
+//                 width: 225px;
+//                 padding: 20px;
+//             }
+//         }
+//     }
+
+//     nav {
+//         ul.lista {
+//             display: flex;
+        
+//             @for $i from 1 to 4 {
+//                 .botola#{$i} {
+//                     margin-top: 50px;
+//                     margin-left: 20px;
+//                     cursor: pointer;
+//                     display: block;
+//                     padding: 10px;
+//                     color: #000000;
+//                     font-size: 20px;
+//                 }
+    
+//                 .botola#{$i}:hover {
+//                     transform: translateY(-5px);
+//                     transition: all 300ms;
+//                     border-bottom: 4px solid;
+//                 }
+//             }
+//         }
+
+//     }
+// }

@@ -9,8 +9,11 @@ public class ProdutoDTO {
     private String descricao;
     private double preco;
     private String urlFoto;
+    private Boolean ativo = true;
 
-    public Produto transformaObjeto() {
-        return new Produto(nome, descricao, preco, urlFoto);
+		public Produto transformaObjeto() {
+        return new Produto(nome, descricao, preco, urlFoto, ativo);
     }
+
+
 }

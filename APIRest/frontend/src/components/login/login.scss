@@ -1,0 +1,25 @@
+#xesque {
+    color: orange;
+    font-size: 16px;
+}
+
+#botola {
+    background-color: #f7a40b;
+    color: white;
+    
+    &:hover {
+        background-color: #fca504;
+        color: black;  
+    }
+}
+
+#botolaco {
+    color: black;
+}
+
+#logo {
+    width: 300px;
+    margin-bottom: 20px;
+    background-color: transparent;
+    margin-top: 10px;
+}

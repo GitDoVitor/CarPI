@@ -93,17 +93,17 @@ public class UsuarioController {
 		}
 
 		//todo
-		@ApiOperation(value = "Edita os dados do usuário pelo id.")
-		@ApiResponses(value = {
-						@ApiResponse(code = 200, message = "Usuário editado com sucesso"),
-						@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
-						@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
-		})
-		@PutMapping(value = "edit/{id}")
-		public void editaUsuario(@PathVariable(value = "id") String id, @RequestBody UsuarioDTO newDto) {
-				Usuario usuario = usuarioRepository.findById(id);
-				if (usuario.getCpf().equals(newDto.getCpf())) {
-						usuarioService.salvar(newDto.transformaObjeto());
-				}
-		}
+//		@ApiOperation(value = "Edita os dados do usuário pelo id.")
+//		@ApiResponses(value = {
+//						@ApiResponse(code = 200, message = "Usuário editado com sucesso"),
+//						@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+//						@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+//		})
+//		@PutMapping(value = "edit/{id}")
+//		public void editaUsuario(@PathVariable(value = "id") String id, @RequestBody UsuarioDTO newDto) {
+//				Usuario usuario = usuarioRepository.findById(id);
+//				if (usuario.getCpf().equals(newDto.getCpf())) {
+//						usuarioService.salvar(newDto.transformaObjeto());
+//				}
+//		}
 }

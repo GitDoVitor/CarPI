@@ -19,6 +19,7 @@ public class PedidoController {
     @Autowired
     PedidoService pedidoService;
 
+    //todo
     @ApiOperation(value = "Adiciona um novo pedido")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Pedido adicionado com sucesso"),
@@ -55,9 +56,9 @@ public class PedidoController {
 				return pedidoService.listaUm(id);
 		}
 
-		@ApiOperation(value = "Deleta um pedido pelo id")
+		@ApiOperation(value = "Cancela um pedido pelo id")
 		@ApiResponses(value = {
-						@ApiResponse(code = 200, message = "Pedido deletado com sucesso"),
+						@ApiResponse(code = 200, message = "Pedido desativado com sucesso"),
 						@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
 						@ApiResponse(code = 500, message = "Foi gerada uma exceção"),
 		})

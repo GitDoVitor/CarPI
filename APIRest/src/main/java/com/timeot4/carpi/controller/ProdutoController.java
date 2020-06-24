@@ -1,5 +1,6 @@
 package com.timeot4.carpi.controller;
 
+import com.timeot4.carpi.dto.ProdutoCardapioDTO;
 import com.timeot4.carpi.dto.ProdutoDTO;
 import com.timeot4.carpi.dto.ProdutoRespostaDTO;
 import com.timeot4.carpi.models.Produto;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,8 +47,14 @@ public class ProdutoController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @GetMapping
-    public List<Produto> listarTodos() {
-        return produtoService.listar();
+    public ResponseEntity<List<ProdutoCardapioDTO>> listarTodos() {
+        List<Produto> produtosList = produtoService.listar();
+        List<ProdutoCardapioDTO> produtoDTOList = new ArrayList<>();
+        produtosList.forEach(produto -> {
+						System.out.println(produto);
+        		produtoDTOList.add(ProdutoCardapioDTO.transformaProduto(produto));
+				});
+        return new ResponseEntity<>(produtoDTOList, HttpStatus.OK);
     }
 
     @ApiOperation(value = "Lista um produto pelo id")
@@ -56,29 +64,32 @@ public class ProdutoController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @GetMapping(value = "/{id}")
-    public Produto listaUm(@PathVariable(value = "id") long id) {
+    public Produto listaUm(@PathVariable(value = "id") String id) {
         return produtoService.listaUm(id);
     }
 
-    @ApiOperation(value = "Deleta um produto pelo id")
+    @ApiOperation(value = "Desativa um produto pelo id")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Produto deletado com sucesso"),
-            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
-            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
-    })
-    @DeleteMapping("/{id}")
-    public void deletaUm(@PathVariable(value = "id") long id) {
-        produtoService.deletaProduto(id);
-    }
-
-    @ApiOperation(value = "Edita um produto pelo id")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Produto editado com sucesso"),
+            @ApiResponse(code = 200, message = "Produto desativado com sucesso"),
             @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @PutMapping("/{id}")
-    public Produto editaProduto(@RequestBody Produto produto) {
-        return produtoService.salvar(produto);
+    public void voceFoiCanceladah(@PathVariable(value = "id") String id) {
+				Produto produto = produtoService.listaUm(id);
+				produto.setAtivo(false);
+				produtoService.salvar(produto);
     }
+
+    //todo
+//    @ApiOperation(value = "Edita um produto pelo id")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = "Produto editado com sucesso"),
+//            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+//            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+//    })
+//    @PutMapping("/{id}")
+//    public Produto editaProduto(@RequestBody Produto produto) {
+//        return produtoService.salvar(produto);
+//    }
 }

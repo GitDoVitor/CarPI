@@ -27,9 +27,9 @@ public class PedidoService {
 				return pedidoRepository.findById(id);
 		}
 
-    public void deletaPedido(@PathVariable(value = "id") long id) {
-        pedidoRepository.deleteById(id);
-    }
+//    public void deletaPedido(@PathVariable(value = "id") long id) {
+//        pedidoRepository.deleteById(id);
+//    }
 
 
 

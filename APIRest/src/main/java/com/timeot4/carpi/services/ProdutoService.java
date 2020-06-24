@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,14 +23,26 @@ public class ProdutoService {
     }
 
     public List<Produto> listar() {
-        return produtoRepository.findAll();
+		 List<Produto> produtos = produtoRepository.findAll();
+		 List produtosAtivos = new ArrayList();
+		 produtos.forEach(produto -> {
+		 		if (produto.getAtivo() == true) {
+		 				produtosAtivos.add(produto);
+				}
+		 });
+		 return produtosAtivos;
     }
 
-    public Produto listaUm(@PathVariable(value = "id") long id) {
-        return produtoRepository.findById(id);
+    public Produto listaUm(@PathVariable(value = "id") String id) {
+        Produto produto = produtoRepository.findById(id);
+        Produto produtoAtivo = new Produto();
+        if (produto.getAtivo() == true) {
+						produtoAtivo = produto;
+				}
+        return produtoAtivo;
     }
 
-    public void deletaProduto(@PathVariable(value = "id") long id) {
-        produtoRepository.deleteById(id);
-    }
+//    public void deletaProduto(@PathVariable(value = "id") String id) {
+//        produtoRepository.deleteById(id);
+//    }
 }

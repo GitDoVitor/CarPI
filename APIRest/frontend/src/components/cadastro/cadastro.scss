@@ -1,0 +1,27 @@
+#arrumaFundo {
+    border: none;
+    background-color: transparent;
+}
+
+#logo {
+    width: 250px;
+    margin-bottom: 40px;
+    margin-top: 13px;
+}
+
+#botola {
+    background-color: #f7a40b;
+    color: white;
+    
+    &:hover {
+        background-color: #fca504;
+        color: black;  
+    }
+}
+
+#possuiConta {
+    color: #f7a40b;
+    font-size: 16px;
+}
+
+

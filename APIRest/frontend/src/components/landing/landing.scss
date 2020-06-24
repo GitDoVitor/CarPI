@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.chamada {
+    color: #e49707;
+    text-align: center;
+    margin-bottom: 50px;
+    height: 666px;
+    background-image: url(../../img/2663783p.jpg);
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+    background-attachment: fixed;
+    
+    h1 {
+        font-family: 'Roboto', sans-serif !important;
+        font-size: 25px;
+        margin-right: 460px;
+        padding-top: 230px;
+    }
+
+}
+
+.chamadaPromo {
+    display: flex;
+    margin-top: 90px;
+
+    .content {
+        margin-right: 25%;
+        margin-left: 25%;
+        text-align: center;
+        font-family: "Roboto", sans-serif !important;
+
+
+        h1 {
+            font-size: 35px;
+        }
+
+        p {
+            font-size: 15px;
+            margin-top: 20px;
+        }
+    }
+}
+
+.wrap {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    margin-top: 125px;
+    overflow-x: hidden;
+
+    .text {
+        text-align: center;
+        padding: 5%;
+    
+        h1 {
+            font-size: 25px;
+        }
+
+        p {
+            font-size: 15px;
+        }
+    }
+}
+
+.img1 {
+    width: 600px;
+}
+
+.eve {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    overflow-x: hidden;
+
+    .texto {
+        text-align: center;
+        padding: 5%;
+        
+        h1 {
+            font-size: 25px;
+        }
+
+        p {
+            font-size: 15px;
+        }
+    }
+}
+
+.img {
+    width: 600px;
+}
